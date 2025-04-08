@@ -1,14 +1,13 @@
 FROM python:3-bullseye
 
-# Install system dependencies (including distutils)
-RUN apt-get update && \
-    apt-get install -y python3-distutils && \
-    rm -rf /var/lib/apt/lists/*
-
 WORKDIR /data
 
-# Install Python dependencies
-RUN pip install django==3.2
+# Create and activate virtual environment
+RUN python -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+
+# Install setuptools and Django
+RUN pip install setuptools django==3.2
 
 COPY . .
 
