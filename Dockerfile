@@ -1,3 +1,5 @@
+FROM python:3-bullseye
+
 # Install system dependencies (including distutils)
 RUN apt-get update && \
     apt-get install -y python3-distutils && \
